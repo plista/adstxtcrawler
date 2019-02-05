@@ -120,6 +120,7 @@ INSERT INTO `adsystem_domain` VALUES ('videoflare.com',67);
 INSERT INTO `adsystem_domain` VALUES ('yahoo.com',68);
 INSERT INTO `adsystem_domain` VALUES ('yume.com',58);
 INSERT INTO `adsystem_domain` VALUES ('pixfuture.com',69);
+INSERT INTO `adsystem_domain` VALUES ('plista.com',70);
 
 DROP TABLE IF EXISTS adsystem;
 CREATE TABLE "adsystem" (
@@ -205,5 +206,6 @@ INSERT INTO `adsystem` VALUES (94,'Teads','teads.tv');
 INSERT INTO `adsystem` VALUES (95,'PulsePoint',NULL);
 INSERT INTO `adsystem` VALUES (96,'District M',NULL);
 INSERT INTO `adsystem` VALUES (97,'Sharethrough',NULL);
+INSERT INTO `adsystem` VALUES (98,'plista',NULL);
 COMMIT;
 
