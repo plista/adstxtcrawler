@@ -31,8 +31,8 @@ localhosttribune.com
 
 The project depends on these libraries and programs installed
 
-* Python 2 or better
-* Python HTTP Requests libary (pip install requests)
+* Python 3 or better
+* pip install -r requirements.txt
 * sqlite3
 
 Execute this command to install the DB table 
