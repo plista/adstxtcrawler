@@ -1,13 +1,28 @@
 ## Synopsis
 
-An example crawler for ads.txt files given a list of URLs or domains etc and saves them to a SQLite DB table.
+A crawler for ads.txt files given a list of URLs or domains etc and saves them to a SQLite DB table.
+
+## Local Setup
+Start local postgres database
+```
+docker-compose up
+```
+Set environment variables for python
+```
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=adstxt
+DB_HOST=localhost
+```
 
 ## Usage Example
 ```
-Usage: adstxt_crawler.py [options]
+(venv) Usage: adstxt_crawler.py [options]
+venv/bin/python adstxt_crawler.py --url http://spiegel.de
 
 Options:
   -h, --help            show this help message and exit
+  -u, --url             singe URL to crawl
   -t FILE, --targets=FILE
                         list of domains to crawler ads.txt from
   -d FILE, --database=FILE
