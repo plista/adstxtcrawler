@@ -13,7 +13,7 @@ def crawl_to_db(hostname: str, url: str):
     if r.status_code != 200:
         raise Exception("Error crawling %s, status code = %s" % (url, r.status_code))
 
-    if not re.search(r"ads\.txt$", r.url):
+    if r.url and not re.search(r"ads\.txt$", r.url):
         raise Exception("invalid redirect to %s" % url)
 
     return line_to_entry(r.text, hostname)
