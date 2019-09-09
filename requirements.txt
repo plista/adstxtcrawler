@@ -1,2 +1,4 @@
 requests
-psycopg2-binary==2.7.6.1
+httmock
+pytest==3.4.2
+pytest-cov==2.5.1

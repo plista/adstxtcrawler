@@ -11,3 +11,8 @@ class Entry:
         self.account_type = data_row[2].strip().lower() if len(data_row) > 2 else ''
         self.tag_id = data_row[3].strip().lower() if len(data_row) > 3 else ''
 
+    def match(self, compare):
+        for key, val in compare.__dict__.items():
+            if val and getattr(self, key) != val:
+                return False
+        return True

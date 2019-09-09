@@ -1,0 +1,3 @@
+plista.com, 600, DIRECT
+appnexus.com, 3563, DIRECT
+appnexus.com, 7790, DIRECT

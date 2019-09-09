@@ -1,39 +1,23 @@
-import sys
-import logging
-from optparse import OptionParser
 from app.app import App
+import argparse
+import logging
+import sys
 
-arg_parser = OptionParser()
-arg_parser.add_option("-f", "--file", dest="target_filename",
-                      help="list of domains to crawl ads.txt from", metavar="FILE")
-arg_parser.add_option("-u", "--url", dest="target_domain",
-                      help="Domains to crawl ads.txt from", metavar="FILE")
-arg_parser.add_option("-d", "--database", dest="target_database",
-                      help="Database to dump crawled data into", metavar="FILE")
-arg_parser.add_option("-v", "--verbose", dest="verbose", action='count',
-                      help="Increase verbosity (specify multiple times for more)")
+parser = argparse.ArgumentParser(description='Loads adstxt from publishers and matches with filter.')
+parser.add_argument('--url', help='Source file with 1 line per publisher')
+parser.add_argument('--source', help='Source file with 1 line per publisher')
+parser.add_argument('--target', help='Target file with 1 line per publisher')
+parser.add_argument('--filter', help='e.g. appnexus.com, 3563, DIRECT', required=True, action='append')
+parser.add_argument('--verbose', help="increase output verbosity", action="store_true")
+args = parser.parse_args()
 
-(options, args) = arg_parser.parse_args()
+if args.verbose:
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
-if len(sys.argv) == 1:
-    arg_parser.print_help()
-    exit(1)
-
-log_level = logging.WARNING
-
-if options.verbose == 1:
-    log_level = logging.INFO
-elif options.verbose == 2:
-    log_level = logging.DEBUG
-
-logging.basicConfig(filename='adstxt_crawler.log', level=log_level,
-                    format='%(asctime)s %(filename)s:%(lineno)d:%(levelname)s  %(message)s')
-
-app = App()
-if options.target_domain:
-    app.queue(options.target_domain)
-
-if options.target_filename:
-    app.queueFile(options.target_filename)
-
-app.run()
+app = App(args.filter)
+if args.url:
+    app.queue(args.url)
+if args.source:
+    app.queueFile(args.source)
+metrics = app.run(app.target)
+print(metrics)
